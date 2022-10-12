@@ -1,6 +1,0 @@
-{
- "name": "[Arnel1001/logApp-Llabores]",
- "type": "project",
- "minimum-stability": "stable",
- "require": {}
-}
