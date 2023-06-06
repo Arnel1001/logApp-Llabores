@@ -14,7 +14,7 @@
 
 ### Registration
 
-![Registration](https://github.com/Arnel1001/logApp-Llabores/blob/main/logApp-scaling-octo/Login%20Page.png)
+![Registration](https://github.com/Arnel1001/logApp-Llabores/blob/main/logApp-scaling-octo/Register%20Page.png)
 
 ### Login
 
