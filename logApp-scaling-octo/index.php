@@ -12,7 +12,7 @@
 		$query = "INSERT INTO person(lastname, firstname,address,logdt) VALUES('$lname', '$fname', '$address', now())";
 
 		if(mysqli_query($conn, $query)){
-      header('Location: '.ROOT_URL.'');
+      header('Location: guestbook-login.php');
 		} else {
 			echo 'ERROR: '. mysqli_error($conn);
 		}

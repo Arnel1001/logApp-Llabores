@@ -1,50 +1,47 @@
 <?php
-  session_start();
-  require ('config/config.php');
-  require ('config/db.php');
+//start session
+session_start();
 
-  #set this variables to null to avoid the undefined index
-  $usr = $_POST['username'] ?? '';
-  $pass = $_POST['password'] ?? '';
+require('config/config.php');
+require('config/db.php');
 
-  #assign session to a post
-  $_SESSION['user'] = $usr;
-  $_SESSION['pass'] = $pass;
+// Set variables to null to avoid undefined index
+$usr = $_POST['username'] ?? '';
+$pass = $_POST['password'] ?? '';
 
-  $query = "SELECT * FROM account ORDER BY id_acc DESC";
-  $output = mysqli_query($conn, $query);
-  $check = mysqli_num_rows($output);
+// Assign session to post
+$_SESSION['user'] = $usr;
+$_SESSION['pass'] = $pass;
 
-  if($check > 0){
-    while($rows = mysqli_fetch_assoc($output)){
-      $row[] = $rows;
-      foreach ($row as $numRow) {
+$query = "SELECT * FROM login ORDER BY id DESC";
+$result = mysqli_query($conn, $query);
+$check = mysqli_num_rows($result);
 
-        #check if there's still a user and pass session 
-        if($_SESSION['user'] && $_SESSION['pass']){
-
-          #if session is equal to the database then proceed to the next page
-          if($_SESSION['user'] == $numRow['username'] && $_SESSION['pass'] == $numRow['password']){
-            header("location: guestbook-list.php");
-
-          }
+if ($check > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Check if there's still a user and pass session
+        if ($_SESSION['user'] && $_SESSION['pass']) {
+            // If session is equal to the database, proceed to the next page
+            if ($_SESSION['user'] == $row['username'] && $_SESSION['pass'] == $row['password']) {
+                header("location: guestbook-list.php");
+                exit; // Exit the script to prevent further execution
+            }
         }
-
-        #if the post usr and pass is empty just turn off error undefined index
-        if(empty($usr) && empty($pass)){
-          error_reporting(0);
-        }else{
-          echo "Account is not in database";
-        }
-      }
     }
-  }
+
+    // If the post usr and pass are empty, turn off error reporting for undefined index
+    if (empty($usr) && empty($pass)) {
+        error_reporting(0);
+    } else {
+        echo "Account is not in the database";
+    }
+}
 
 ?>
 <?php include('inc/header.php'); ?>
   <br/>
   <div style="width:30%; margin: auto; text-align: center;">
-    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-signin">
+    <form method="POST" action="guestbook-list.php" class="form-signin">
       <img class="mb-4" src="img/bootstrap.svg" alt="" width="100" height="100">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Username</label>
@@ -61,3 +58,4 @@
     </form>
   </div>
 <?php include('inc/footer.php'); ?>
+

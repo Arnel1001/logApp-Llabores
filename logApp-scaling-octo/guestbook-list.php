@@ -1,21 +1,15 @@
 <?php
-    # append the database to use the connection
-    require ('config/config.php');
-    require ('config/db.php');
+require('config/config.php');
+require('config/db.php');
 
-    #input we want inside the person's query
-    $sql = "SELECT * FROM person;";
+// Create a query
+$query = "SELECT id, lastname, firstname, address, logdt FROM person ORDER BY logdt DESC";
 
-    #will input this in the query
-    $result = mysqli_query($conn, $sql);
-    $check = mysqli_num_rows($result);
-    if($check > 0){
+//Execute the query
+$result = mysqli_query($conn, $query);
 
-        # fetch the query of the sqldb
-        while($person = mysqli_fetch_assoc($result)){
-            $persons[] = $person;
-        }
-    }
+//Fetch the results and store them in an array
+$persons = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <?php include('inc/header.php'); ?>
@@ -37,7 +31,7 @@
                 <tbody>
                 <?php foreach($persons as $person) : ?>
                     <tr>
-                    <th scope="row"><?php echo $person['pid'];?></th>
+                    <th scope="row"><?php echo $person['id'];?></th>
                     <td><?php echo $person['lastname'];?></td>
                     <td><?php echo $person['firstname'];?></td>
                     <td><?php echo $person['address'];?></td>

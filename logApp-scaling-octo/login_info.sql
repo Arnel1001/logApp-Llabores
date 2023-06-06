@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2022 at 02:45 PM
+-- Generation Time: Jun 06, 2023 at 11:11 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,27 +18,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `personal_informations`
+-- Database: `login_info`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Table structure for table `login`
 --
 
-CREATE TABLE `account` (
-  `id_acc` int(11) NOT NULL,
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`id_acc`, `username`, `password`) VALUES
-(1, 'root', 'root');
 
 -- --------------------------------------------------------
 
@@ -47,53 +40,53 @@ INSERT INTO `account` (`id_acc`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `person` (
-  `pid` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
-  `logdt` varchar(45) NOT NULL
+  `logdt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`pid`, `firstname`, `lastname`, `address`, `logdt`) VALUES
-(1, 'Tolentino', 'Jan Glenard', 'Tiniguiban', '2022-09-20 00:49:56'),
-(2, 'Arnel', 'Llabores', 'Tiniguiban', '2022-09-20 11:12:06'),
-(3, 'Elaine', 'Llacuna', 'Tiniguiban', '2022-09-20 11:20:53');
+INSERT INTO `person` (`id`, `firstname`, `lastname`, `address`, `logdt`) VALUES
+(1, 'reid', 'james', 'somewhere', '2023-06-06 16:32:03'),
+(2, 'reid', 'james', 'somewhere', '2023-06-06 16:37:40'),
+(3, 'reid', 'james', 'somewhere', '2023-06-06 17:08:17');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `account`
+-- Indexes for table `login`
 --
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`id_acc`);
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
-  ADD PRIMARY KEY (`pid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT for table `login`
 --
-ALTER TABLE `account`
-  MODIFY `id_acc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
